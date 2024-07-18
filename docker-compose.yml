@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: postgres1.0
+    image: postgres:16.3
+    environment:
+      POSTGRES_USER: banky
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "5333:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
